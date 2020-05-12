@@ -1,0 +1,7 @@
+﻿  ErmitConstant2.cpp
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(226,10): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(277,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(294,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(300,17): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(355,22): warning C4018: <: несоответствие типов со знаком и без знака
+  ErmitConstant2.vcxproj -> D:\Projects\ErmitConstant2\Debug\ErmitConstant2.exe

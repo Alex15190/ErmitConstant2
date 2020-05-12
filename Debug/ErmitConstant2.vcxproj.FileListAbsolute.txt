@@ -1,0 +1,2 @@
+D:\Projects\ErmitConstant2\Debug\ErmitConstant2.exe
+D:\Projects\ErmitConstant2\Debug\ErmitConstant2.pdb
