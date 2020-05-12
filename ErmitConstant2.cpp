@@ -14,6 +14,7 @@ double a[MAXN]; //used to generate matrix
 double zeroArr[MAXN];
 vector<Matrix> generatedVectors; // that x^T F x < 1
 int genVect[N];
+int v[N];
 
 //todo create recursive generate vector for > 0 case
 double history; //for higherOneCase
@@ -153,7 +154,7 @@ void generateVectorsFor(Matrix f) {
 	bool isNeededGenVect = recGenerateVectors(f, e, 0);
 	//create vertor/vectors from int to Matrix
 	if (isNeededGenVect) {
-		std::cout << genVect[N-1] << endl;
+		std::cout << "Is needed to generate vectors" << endl;
 		if (!isAllZeros()) {
 			//generatedVectors = generateVector();
 		}
@@ -203,34 +204,49 @@ void reverseRecGenVectorForZeroCase(Matrix d, Matrix p, int n) {
 void higherZeroCaseRecFunc(Matrix d, Matrix p, int n, vector<int> vReverce, vector<Matrix>* vm) {
 	if (n > 0) {
 		//востановить
-		for (int i = n; i < d.size(); i++) {
-			double coof = p[n - 1][i] * (-1);
-			d = d.comb(i, n - 1, coof);
-			p = p.comb(i, n - 1, coof);
+		cout << "d.size - n-1 = " << d.size() - n - 1 << endl;
+
+		//bad?
+		for (int i = n+1; i < d.size(); i++) {
+			double coof = p[n][i] * (-1);
+			d = d.comb(i, n, coof);
+			p = p.comb(i, n, coof);
 		}
+		//
+
 		d.updateDiagonalMatrix();
 		//посчитать элемент вектора n-1
-		double a = 0;
-		for (int i = n; i < d.size(); i++) {
-			a += d[n - 1][i] * genVect[i];
+
+		//
+		double a = 0; //bad
+		for (int i = n+1; i < d.size(); i++) {
+			a += d[n][i] * v[i];
 		}
+		//
 		double b = 1 - history;
-		double c = p[n - 1][n - 1];
-		int xi = sqrt(abs(b / c)) - a;
-		genVect[n - 1] = (int)xi;
-		double coof = d[n - 1][n - 1];
-		history += coof * (pow(genVect[n - 1] + a, 2));
+		double c = p[n][n]; //bad?
+		double xi = sqrt(abs(b / c)) - a;
+		cout << "history = " << history << endl;
+		cout << "xi = " << xi << endl;
+		genVect[n] = abs((int)xi);
+		double coof = d[n][n];
+		history += coof * (pow(v[n] + a, 2));
 		//рекурсивный вызов
-		for (int k = (-1) * genVect[n - 1]; k <= genVect[n - 1]; k++) {
+		for (int k = (-1) * genVect[n]; k <= genVect[n]; k++) {
 			vReverce.push_back(k);
+			v[n] = k;
+			cout << "if (n > 0) k = " << k << ", v[" << n << "] = " << v[n] << endl;
 			higherZeroCaseRecFunc(d, p, n - 1, vReverce, vm);
 			vReverce.pop_back();
 		}
 	}
 	else {
-		for (int i = (-1) * genVect[n]; i < genVect[n]; i++) {
-			vReverce.push_back(i);
-			vReverce.reserve(vReverce.size());
+		for (int k = (-1) * genVect[n]; k <= genVect[n]; k++) {
+			vReverce.push_back(k);
+			v[n] = k;
+			cout << "else k = " << k << ", v[" << n << "] = " << v[n] << endl;
+			std::reverse(vReverce.begin(), vReverce.end());
+			cout << endl;
 			vm->push_back(Matrix(vReverce));
 			vReverce.pop_back();
 		}
@@ -245,7 +261,9 @@ void reverceRecGenVectorForHigherZeroCase(Matrix d, Matrix p, int n) {
 		vector<int> vReverce;
 		for (int k = (-1) * genVect[n]; k <= genVect[n]; k++) {
 			vReverce.push_back(k);
-			higherZeroCaseRecFunc(d, p, n, vReverce, &vm);
+			v[n] = k;
+			cout << "vm k = " << k << ", v[" << n << "] = " << v[n] << endl;
+			higherZeroCaseRecFunc(d, p, n-1, vReverce, &vm);
 			vReverce.pop_back();
 
 		}
@@ -268,6 +286,8 @@ bool recGenerateVectors(Matrix d, Matrix p, int n) {
 		}
 		else {
 			genVect[n] = abs(1 / (double)d[n][n]);
+			v[n] = genVect[n];
+			cout << "1 / (double)d[n][n] = " << 1 / (double)d[n][n] << " v["<< n << "] = " << v[n] << endl;
 			history = pow(genVect[n], 2)*d[n][n];
 			reverceRecGenVectorForHigherZeroCase(d, p, n);
 			return true;
