@@ -31,6 +31,8 @@ public:
 	bool isRref();
 	bool isInvertible();
 
+	bool isZeros();
+
 	int size();
 
 	void mSwap(int x, int y);
@@ -357,6 +359,15 @@ double Matrix::_det(Matrix& m) {
 
 int Matrix::size() {
 	return cols;
+}
+
+bool Matrix::isZeros() {
+	for (int i = 0; i < this->rows; i++) {
+		for (int j = 0; j < this->cols; j++) {
+			if (this->matrix[i][j] != 0) return false;
+		}
+	}
+	return true;
 }
 
 void Matrix::print() {

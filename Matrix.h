@@ -33,6 +33,8 @@ public:
 	bool isStep();
 	bool isRref();
 	bool isInvertible();
+	
+	bool isZeros();
 
 	int size();
 

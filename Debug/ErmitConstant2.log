@@ -1,6 +1,9 @@
 ﻿  ErmitConstant2.cpp
-D:\Projects\ErmitConstant2\ErmitConstant2.cpp(281,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-D:\Projects\ErmitConstant2\ErmitConstant2.cpp(300,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-D:\Projects\ErmitConstant2\ErmitConstant2.cpp(306,17): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-D:\Projects\ErmitConstant2\ErmitConstant2.cpp(361,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(58,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(251,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(270,20): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(276,17): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(285,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(312,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Projects\ErmitConstant2\ErmitConstant2.cpp(321,21): warning C4018: <: несоответствие типов со знаком и без знака
   ErmitConstant2.vcxproj -> D:\Projects\ErmitConstant2\Debug\ErmitConstant2.exe
