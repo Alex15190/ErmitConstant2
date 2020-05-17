@@ -128,7 +128,7 @@ void generateVectorsFor(Matrix f) {
 		}
 		generatedVectors.push_back(Matrix(vect));
 	}
-	
+
 }
 
 double sumOfDiagonalElements(Matrix f, int n) {
@@ -144,8 +144,8 @@ void reverseRecGenVectorForZeroCase(Matrix d, Matrix p, int n) {
 		//востановить
 		for (int i = n; i < d.size(); i++) {
 			double coof = p[i][n - 1] * (-1);
-			d = d.comb(i, n-1, coof);
-			p = p.comb(i, n-1, coof);
+			d = d.comb(i, n - 1, coof);
+			p = p.comb(i, n - 1, coof);
 		}
 		d.updateDiagonalMatrix();
 		//посчитать элемент вектора n-1
@@ -154,7 +154,7 @@ void reverseRecGenVectorForZeroCase(Matrix d, Matrix p, int n) {
 		for (int i = n; i < d.size(); i++) {
 			xi -= d[i][n - 1] / coof;
 		}
-		genVect[n - 1] = (int) xi;
+		genVect[n - 1] = (int)xi;
 		//рекурсивный вызов
 		reverseRecGenVectorForZeroCase(d, p, n - 1);
 	}
@@ -167,7 +167,7 @@ void higherZeroCaseRecFunc(Matrix d, Matrix p, int n, vector<int> vReverce, vect
 		//cout << "d" << endl << d << endl;
 		//cout << "p" << endl << p << endl;
 		//bad?
-		for (int i = n+1; i < d.size(); i++) {
+		for (int i = n + 1; i < d.size(); i++) {
 			double coof = p[i][n] * (-1);
 			d = d.comb(i, n, coof);
 			p = p.comb(i, n, coof);
@@ -182,7 +182,7 @@ void higherZeroCaseRecFunc(Matrix d, Matrix p, int n, vector<int> vReverce, vect
 		//cout << "p new" << endl << p << endl;
 		double a = 0; //bad
 
-		for (int i = n+1; i < d.size(); i++) {
+		for (int i = n + 1; i < d.size(); i++) {
 			a += d[i][n] * v[i];
 		}
 		//
@@ -226,7 +226,7 @@ void reverceRecGenVectorForHigherZeroCase(Matrix d, Matrix p, int n) {
 			vReverce.push_back(k);
 			v[n] = k;
 			//cout << "vm k = " << k << ", v[" << n << "] = " << v[n] << endl;
-			higherZeroCaseRecFunc(d, p, n-1, vReverce, &vm);
+			higherZeroCaseRecFunc(d, p, n - 1, vReverce, &vm);
 			vReverce.pop_back();
 
 		}
@@ -236,22 +236,22 @@ void reverceRecGenVectorForHigherZeroCase(Matrix d, Matrix p, int n) {
 
 bool recGenerateVectors(Matrix d, Matrix p, int n) {
 	if (d[n][n] > 0) {
-		if (n < d.size()-1) {
+		if (n < d.size() - 1) {
 			//преобразования....
-			for (int i = n+1; i < d.size(); i++) {
+			for (int i = n + 1; i < d.size(); i++) {
 				double coof = (d[i][n] / d[n][n]) * (-1);
 				d = d.comb(i, n, coof);
 				p = p.comb(i, n, coof);
 			}
 			//
 			d.updateDiagonalMatrix();
-			return recGenerateVectors(d,p,n+1);
+			return recGenerateVectors(d, p, n + 1);
 		}
 		else {
 			genVect[n] = abs(1 / (double)d[n][n]);
 			v[n] = genVect[n];
 			//cout << "1 / (double)d[n][n] = " << 1 / (double)d[n][n] << " v["<< n << "] = " << v[n] << endl;
-			history = pow(genVect[n], 2)*d[n][n];
+			history = pow(genVect[n], 2) * d[n][n];
 			reverceRecGenVectorForHigherZeroCase(d, p, n);
 			return true;
 		}
@@ -263,12 +263,12 @@ bool recGenerateVectors(Matrix d, Matrix p, int n) {
 		reverseRecGenVectorForZeroCase(d, p, n);
 		return false;
 	}
-	else  {
+	else {
 		double first = sumOfDiagonalElements(d, n - 1);
 		double second = -d[n][n];
 		Matrix b = p.transpost();
 		genVect[n] = sqrt(first / second);
-		for (int i = n-2; i >= 0; i--) {
+		for (int i = n - 2; i >= 0; i--) {
 			double x = 0;
 			for (int k = 1; k < n; k++) {
 				x += b[k][i] * genVect[k];
@@ -346,9 +346,9 @@ int main()
 				}
 			}
 		}
-		
+
 		//
-		
+
 
 		if (B.size() == 0) {
 			//A.clear();
